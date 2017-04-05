@@ -5,10 +5,11 @@ function Contact(first, last) {
   this.addresses = [];
 }
 
-function Address(street, city, state) {
+function Address(street, city, state, addressType) {
   this.street = street;
   this.city = city;
   this.state = state;
+  this.addressType = addressType;
 }
 
 Contact.prototype.fullName = function() {
@@ -16,7 +17,7 @@ Contact.prototype.fullName = function() {
 }
 
 Address.prototype.fullAddress = function() {
-  return this.street + ", " + this.city + ", " + this.state;
+  return this.street + ", " + this.city + ", " + this.state + "<br>" + "Type: " + this.addressType;
 }
 
 function resetFields() {
@@ -25,12 +26,13 @@ function resetFields() {
   $("#new-street").val("");
   $("#new-city").val("");
   $("#new-state").val("");
+  $("#new-type").val("");
 }
 
 // User Interface Logic
 $(document).ready(function() {
   $("#add-address").click(function() {
-    $("#new-addresses").append('<div class="new-address">' +
+    $("#new-addresses").append('<div class="new-address input">' +
                                  '<div class="form-group">' +
                                    '<label for="new-street">Street</label>' +
                                    '<input type="text" class="form-control new-street">' +
@@ -42,6 +44,10 @@ $(document).ready(function() {
                                  '<div class="form-group">' +
                                    '<label for="new-state">State</label>' +
                                    '<input type="text" class="form-control new-state">' +
+                                 '</div>' +
+                                 '<div class="form-group">' +
+                                   '<label for="new-type">Type of Address</label>' +
+                                   '<input type="text" class="form-control new-type" placeholder="e.g. home, office">' +
                                  '</div>' +
                                '</div>');
   });
@@ -59,14 +65,15 @@ $(document).ready(function() {
       var inputtedStreet = $(this).find("#new-street").val();
       var inputtedCity = $(this).find("#new-city").val();
       var inputtedState = $(this).find("#new-state").val();
-      var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState);
+      var inputtedType = $(this).find("#new-type").val();
+      var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState, inputtedType);
 
       newContact.addresses.push(newAddress);
     });
 
     $(".contact").last().click(function() {
-      $("#show-contact").show();
-      $("#show-contact h2").text(newContact.firstName);
+      $("#show-contact").toggle();
+      $("#show-contact h2").text(newContact.fullName());
       $(".first-name").text(newContact.firstName);
       $(".last-name").text(newContact.lastName);
       $("#addresses").text("");
@@ -76,6 +83,7 @@ $(document).ready(function() {
     });
 
     resetFields();
+    $(".input").remove();
 
   });
 });
