@@ -2,6 +2,26 @@
   display: none;
 }
 
+body {
+  font-family: Verdana;
+}
+
+.content {
+  margin: 30px;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+#add-address {
+  background-color: #c4c4c4;
+}
+
+#add {
+  float: right;
+}
+
 .contact {
   cursor: pointer;
   color: #0088cc;
@@ -11,6 +31,6 @@
   text-decoration: underline;
 }
 
-#add {
-  float: right;
+#show-contact h2 {
+  text-align: center;
 }

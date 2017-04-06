@@ -1,7 +1,8 @@
 // Business Logic
-function Contact(first, last) {
+function Contact(first, last, phone) {
   this.firstName = first;
   this.lastName = last;
+  this.phone = phone;
   this.addresses = [];
 }
 
@@ -23,6 +24,7 @@ Address.prototype.fullAddress = function() {
 function resetFields() {
   $("#new-first-name").val("");
   $("#new-last-name").val("");
+  $("#new-phone").val("");
   $(".new-street").val("");
   $(".new-city").val("");
   $(".new-state").val("");
@@ -42,12 +44,13 @@ $(document).ready(function() {
                                    '<label for="new-city">City</label>' +
                                    '<input type="text" class="form-control new-city">' +
                                  '</div>' +
+
                                  '<div class="form-group">' +
                                    '<label for="new-state">State</label>' +
                                    '<input type="text" class="form-control new-state">' +
                                  '</div>' +
                                  '<div class="form-group">' +
-                                   '<p>Address Type:</p>' +
+                                   '<p><b>Address Type</b></p>' +
                                    '<select class="form-control new-type">' +
                                      '<option>Home</option>' +
                                      '<option>Work</option>' +
@@ -61,9 +64,10 @@ $(document).ready(function() {
 
     var inputtedFirstName = $("#new-first-name").val();
     var inputtedLastName = $("#new-last-name").val();
-    var newContact = new Contact(inputtedFirstName, inputtedLastName);
+    var inputtedPhone = $("#new-phone").val();
+    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhone);
 
-    $("#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>")
+    $("#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
 
     $(".new-address").each(function() {
       var inputtedStreet = $(this).find(".new-street").val();
@@ -80,6 +84,7 @@ $(document).ready(function() {
       $("#show-contact h2").text(newContact.fullName());
       $(".first-name").text(newContact.firstName);
       $(".last-name").text(newContact.lastName);
+      $(".phone").text(newContact.phone);
       $("#addresses").empty();
       newContact.addresses.forEach(function(address) {
         if (address.street !== "" || address.city !== "" || address.state !== ""){

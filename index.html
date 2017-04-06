@@ -8,12 +8,12 @@
     <title>Address Book</title>
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="container-fluid content">
       <h1>Address Book</h1>
 
       <div class="row">
 
-        <div class="col-md-6">
+        <div class="col-md-4">
           <h2>Add a contact:</h2>
 
           <form id="new-contact">
@@ -25,6 +25,11 @@
             <div class="form-group">
               <label for="new-last-name">Last Name</label>
               <input type="text" class="form-control" id="new-last-name">
+            </div>
+
+            <div class="form-group">
+              <label for="new-phone">Phone Number</label>
+              <input type="text" class="form-control" id="new-phone" placeholder="e.g.  800-123-4567">
             </div>
 
             <div id="new-addresses">
@@ -45,7 +50,7 @@
                 </div>
 
                 <div class="form-group">
-                  <p><b>Address Type:</b></p>
+                  <p><b>Address Type</b></p>
                   <select class="form-control new-type">
                     <option>Home</option>
                     <option>Work</option>
@@ -55,24 +60,26 @@
               </div>
             </div>
 
-            <span class="btn btn-primary" id="add-address">Another Address</span>
+            <span class="btn" id="add-address">Add Another Address</span>
 
             <button type="submit" class="btn btn-primary btn-lg" id="add">Add Contact</button>
           </form>
+        </div>
 
+        <div class="col-md-4">
           <h2>Contacts:</h2>
           <ul id="contacts"></ul>
         </div>
 
-        <div class="col-md-6">
-          <div id="show-contact">
+        <div class="col-md-4">
+          <div class="well" id="show-contact">
             <h2></h2>
 
-            <p>First name: <span class="first-name"></span></p>
-            <p>Last name: <span class="last-name"></span></p>
-            <p>Address:</p>
+            <p><b>First name: </b><span class="first-name"></span></p>
+            <p><b>Last name: </b><span class="last-name"></span></p>
+            <p><b>Phone: </b><span class="phone"></span></p>
+            <p><b>Address: </b></p>
             <ul id="addresses"></ul>
-
           </div>
         </div>
       </div><!--row-->
